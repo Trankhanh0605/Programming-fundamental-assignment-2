@@ -1,0 +1,195 @@
+//     if (auto* infantry=dynamic_cast<Infantry*>(unit)) {
+    //         InfantryType check0=infantry->getInfantryType();
+    //         bool t = false;
+    //         int score=infantry->returnAttackScore();
+    //         if (isLiberation==true) {
+
+    //             if (check0 == SPECIALFORCES || check0 == REGULARINFANTRY) {
+    //                 t = true;
+    //                 int radius = 5;
+    //                 if (d<=radius) {
+    //                     int D= max(1, static_cast<int>(ceil(d)));
+    //                     int increase = static_cast<int>(ceil((2.0 * score) / D));
+    //                     // army->setEXP(army->getEXP() + increase);
+    //                     unit->setAttackScore(unit->returnAttackScore()+increase); 
+    //                 }
+    //             }
+    //         } else {
+    //             if (check0 == REGULARINFANTRY) {
+    //                 t = true;
+    //                 int radius = 3;
+    //                 if (d<=radius) {
+    //                     int D= max(1, static_cast<int>(ceil(d)));
+    //                     int increase = static_cast<int>(ceil((3.0 * score) / (2.0 * D)));
+    //                     // army->setEXP(army->getEXP() + increase);
+    //                     unit->setAttackScore(unit->returnAttackScore()+increase); 
+    //                 }
+    //             }
+    //         }
+            
+    //     }
+    //     //giam 50% attackScore neu la phuong tien chien dau cua Quan giai phong
+    //     if (isLiberation==true) {
+    //         if (auto* vehicle=dynamic_cast<Vehicle*>(unit)) {
+    //             VehicleType check1=vehicle->getVehicleType(); 
+    //             int score=vehicle->returnAttackScore();
+    //             if (check1==ARTILLERY) {
+    //                 if (d<=2) {
+    //                     int decrease=static_cast<int>(ceil(score*0.5)); 
+    //                     // army->setLF(army->getLF()-decrease); 
+    //                     unit->setAttackScore(unit->returnAttackScore()+decrease); 
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    // 
+
+
+    // int score=unit->getAttackScore(); 
+            // int temp=static_cast<int>(ceil(score*0.2));
+            // if (isLiberation==true) {
+            //     army->setLF(army->getLF()-temp); 
+            //     army->setEXP(army->getEXP()-temp);
+            // }
+            // else {
+            //     army->setLF(army->getLF()+temp); 
+            //     army->setEXP(army->getEXP()+temp);
+            // }
+
+
+/* 
+vector<Unit*> LiberationArmy::findCombination(UnitList* list, bool isInfantry, int minScore) {
+    vector<Unit*> chosen;
+    int sum = 0;
+    for (Unit* u : list->toVector()) {
+    bool ok;
+    if (isInfantry) {
+    // Nếu đang tìm bộ binh, thử ép kiểu về Infantry*
+    ok = (dynamic_cast<Infantry*>(u) != nullptr);
+    } else {
+    // Ngược lại, thử ép kiểu về Vehicle*
+    ok = (dynamic_cast<Vehicle*>(u) != nullptr);
+    }
+        if (!ok) continue;
+        chosen.push_back(u);
+        sum += u->getAttackScore();
+        if (sum >= minScore) break;
+    }
+    return (sum >= minScore) ? chosen : vector<Unit*>{};
+}
+*/
+
+
+bài 3.5 UnitList 
+// int countVehicle=0; 
+    // int countInfantry=0; 
+    // int LF = getLF();
+    // int EXP = getEXP();
+    // int S = LF + EXP;
+
+    // // kiem tra S co phai so dac biet hay khong
+    // bool isSpecial = false;
+    // for (int base : {3, 5, 7}) {
+    //     int temp = S;
+    //     bool special = true;
+    //     while (temp > 0) {
+    //         int digit = temp % base;
+    //         if (digit > 1) {
+    //             special = false;
+    //             break;
+    //         }
+    //         temp /= base;
+    //     }
+    //     if (special) {
+    //         isSpecial = true;
+    //         break;
+    //     }
+    // }
+
+    // this->capacity = isSpecial ? 12 : 8;
+    // head = nullptr;
+    // tail = nullptr;
+
+
+    Phân mountain 
+    //     int radius; 
+//     if (isLiberation==true) {
+//         radius=2; 
+//     }
+//     else {
+//         radius=4; 
+//     }
+//     int dexp=0; 
+//     int dlf=0; 
+//     for (auto* unit: units) {
+//         double d=distance(unit->getCurrentPosition(), pos); 
+//         if (d<=radius) {
+//             int score=unit->getAttackScore(); 
+//             if (dynamic_cast<Infantry*>(unit)) {
+//                 double temp; 
+//                 if (isLiberation) {
+//                     temp = 0.3; 
+//                 }
+//                 else {
+//                     temp = 0.2; 
+//                 }
+//                 dexp+= static_cast<int>(ceil(score*temp));
+//             }
+//             else if (dynamic_cast<Vehicle*>(unit)) {
+//                 double temp; 
+//                 if (isLiberation) {
+//                     temp = 0.1; 
+//                 }
+//                 else {
+//                     temp = 0.05; 
+//                 }
+//                 dlf-= static_cast<int>(ceil(score*temp));
+//             }
+//         }
+// }
+//     army->setEXP(army->getEXP()+dexp); 
+//     army->setLF(max(0, army->getLF()+dlf)); 
+
+
+
+Phần in ra chuỗi đơn vị quân sự: 
+//string UnitList:: str () const {
+// int countVehicles = 0, countInfantries = 0;
+    // string unitListstr;
+
+    // Node* cur = head;
+    // while (cur) {
+    //     if (dynamic_cast<Vehicle*>(cur->unit)) {
+    //         ++countVehicles;
+    //     } else if (dynamic_cast<Infantry*>(cur->unit)) {
+    //         ++countInfantries;
+    //     }
+    //     unitListstr += cur->unit->str();
+    //     if (cur->next) {
+    //         unitListstr += ",";
+    //     }
+    //     cur = cur->next;
+    // }
+
+    // return "unitList=UnitList[count_vehicle=" + to_string(countVehicles) +
+    //        ";count_infantry=" + to_string(countInfantries) +
+    //        ";" + unitListstr + "]";
+    }
+
+    // void UnitList::clear() 
+// /*
+// Xóa toàn bộ đơn vị trong UnitList
+// */
+// {
+//     Node* cur = head;
+//     while (cur) {
+//         Node* next = cur->next;
+//         delete cur->unit; // xóa Unit bên trong
+//         delete cur;
+//         cur = next;
+//     }
+//     head = nullptr;
+//     countVehicle = 0;
+//     countInfantry = 0;
+// }
